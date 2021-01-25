@@ -1,7 +1,8 @@
 /**
  * The exceptions used by Home Assistant.
  */
-import {Context} from "./context";
+import {Optional} from "./types";
+import {Context} from "./core/context";
 
 export class ValueError extends TypeError {
     constructor(message: string) {
@@ -67,23 +68,23 @@ export class InvalidStateError extends HomeAssistantError {
  * When an action is unauthorized.
  */
 export class Unauthorized extends HomeAssistantError {
-    context?: Context;
-    user_id?: string;
-    entity_id?: string;
-    config_entry_id?: string;
-    permission?: string;
-    perm_category?: string;
+    context: Optional<Context>;
+    user_id: Optional<string>;
+    entity_id: Optional<string>;
+    config_entry_id: Optional<string>;
+    permission: Optional<string>;
+    perm_category: Optional<string>;
 
     /**
      * Unauthorized error.
      */
     constructor(
-        context: Context = null,
-        user_id: string = null,
-        entity_id: string = null,
-        config_entry_id: string = null,
-        perm_category: string = null,
-        permission: string = null,
+        context: Optional<Context> = null,
+        user_id: Optional<string> = null,
+        entity_id: Optional<string> = null,
+        config_entry_id: Optional<string> = null,
+        perm_category: Optional<string> = null,
+        permission: Optional<string> = null,
     ) {
         super('Unauthorized')
         this.context = context
